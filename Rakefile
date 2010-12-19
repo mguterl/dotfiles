@@ -1,6 +1,6 @@
 require 'pathname'
 
-LINK_FILES = %w(ackrc bashrc bash_aliases bash_profile gitconfig gitignore irbrc profile railsrc rvmrc)
+LINK_FILES = %w(ackrc bashrc bash_aliases bash_profile gemrc gitconfig gitignore irbrc profile railsrc rvmrc)
 
 def stop_error(message)
   puts "ERROR: #{message}"
