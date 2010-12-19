@@ -1,4 +1,10 @@
+# dotfiles
+
 Just some dotfiles
+
+## Usage
+
+rake install
 
 ## TODO
 
