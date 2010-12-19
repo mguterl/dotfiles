@@ -1,6 +1,4 @@
-[user]
-  name = Michael Guterl
-  email = mguterl@gmail.com
+# Start Generated
 [alias]
   st = status
   ci = commit
@@ -31,21 +29,8 @@
   added = green
   changed = red
   untracked = cyan
-[github]
-  user = mguterl
-  token = 1a76df12ff4d78377ff597a8c5f46de9
-[merge]
-  summary = true
-  tool = "p4merge"
-[mergetool "p4merge"]
- cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge \
-         "$PWD/$BASE" \
-         "$PWD/$LOCAL" \
-         "$PWD/$REMOTE" \
-         "$PWD/$MERGED"
- keepBackup = false
- trustExitCode = false
 [push]
 	default = tracking
 [branch]
 	autosetuprebase = always
+# End Generated

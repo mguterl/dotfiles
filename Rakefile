@@ -1,6 +1,7 @@
 require 'pathname'
 
-LINK_FILES = %w(ackrc bashrc bash_aliases bash_profile gemrc gitconfig gitignore irbrc profile railsrc rvmrc)
+LINK_FILES = %w(ackrc bashrc bash_aliases bash_profile gemrc gitignore irbrc profile railsrc rvmrc)
+INSERT_FILES = %w(gitconfig)
 
 def stop_error(message)
   puts "ERROR: #{message}"
@@ -29,5 +30,27 @@ desc "Install all dotfiles"
 task :install do
   LINK_FILES.each do |file|
     symlink("#{pwd}/#{file}", "#{home}/.#{file}")
+  end
+
+  INSERT_FILES.each do |file|
+    insert = File.read("#{pwd}/#{file}").strip
+    lines = insert.split("\n")
+
+    matcher = Regexp.new(Regexp.escape(lines.first) + '.*?' + Regexp.escape(lines.last), Regexp::MULTILINE)
+
+    contents = File.read("#{home}/.#{file}")
+
+    puts "Insert content into #{home}/.#{file}"
+    output =
+      if contents =~ matcher
+        contents.sub(matcher, insert)
+      else
+        puts "WARNING: This is the first time editing #{home}/.#{file} automatically, you should verify the contents."
+        insert + "\n" + contents
+      end
+
+    File.open("#{home}/.#{file}", 'w') do |f|
+      f.write(output)
+    end
   end
 end
