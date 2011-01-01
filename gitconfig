@@ -33,4 +33,7 @@
 	default = tracking
 [branch]
 	autosetuprebase = always
+[merge "bundle"]
+  name = updates the bundle
+  driver = bundle
 # End Generated
