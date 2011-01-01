@@ -22,7 +22,15 @@ alias gemdocs="gem server >/dev/null 2>&1 & sleep 1 ; open http://localhost:8808
 alias jrake="jruby -S rake"
 alias gorm="cd ~/code/rm/main"
 alias  gob="cd ~/code/rm/board"
-alias mategem="env EDITOR='mate' gem open"
+
+function opengem {
+  gem which $1 | xargs dirname | xargs dirname | xargs $EDITOR;
+}
+
+function mategem {
+  EDITOR='mate'
+  opengem $1;
+}
 
 function yank { \cat $1 | pbcopy; }
 
