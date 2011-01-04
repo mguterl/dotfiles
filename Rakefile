@@ -2,6 +2,7 @@ require 'pathname'
 
 LINK_FILES = %w(ackrc bashrc bash_aliases bash_profile gemrc gitignore irbrc profile railsrc rvmrc)
 INSERT_FILES = %w(gitconfig)
+LINK_DIRECTORIES = %w(bin)
 
 def stop_error(message)
   puts "ERROR: #{message}"
@@ -30,6 +31,10 @@ desc "Install all dotfiles"
 task :install do
   LINK_FILES.each do |file|
     symlink("#{pwd}/#{file}", "#{home}/.#{file}")
+  end
+
+  LINK_DIRECTORIES.each do |dir|
+    symlink("#{pwd}/#{dir}", "#{home}/#{dir}")
   end
 
   INSERT_FILES.each do |file|
