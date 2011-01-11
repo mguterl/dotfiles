@@ -30,7 +30,14 @@ alias gorm="cd ~/code/rm/main"
 alias  gob="cd ~/code/rm/board"
 
 function opengem {
-  gem which $1 | xargs dirname | xargs dirname | xargs $EDITOR;
+  if [ -f Gemfile ]
+  then
+    directory=$(bundle show $1)
+  else
+    directory=$(gem which $1 | xargs dirname | xargs dirname)
+  fi
+  echo "$EDITOR $directory"
+  $EDITOR $directory
 }
 
 function mategem {
@@ -52,3 +59,13 @@ function parse_git_branch
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 }
 
+function pgrep() {
+    ps aux | grep $1 | grep -v grep
+}
+
+function pkill() {
+    local pid
+    pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
+    kill -9 $pid
+    echo -n "Killed $1 (process $pid)"
+}
