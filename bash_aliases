@@ -1,9 +1,9 @@
 alias l="ls -la"
 alias ls="ls -G"
 
-alias sc="script/console"
-alias ss="script/server -p `available_rails_port`"
-alias sg="script/generate"
+alias sc="[ -e script/console ] && script/console || rails console"
+alias ss="[ -e script/server ] && script/server -p `available_rails_port` || rails server -p `available_rails_port`"
+alias sg="[ -e script/generate  ] && script/generate || rails generate"
 
 alias gb="git branch"
 alias gba="git branch -a"
@@ -28,6 +28,8 @@ alias gemdocs="gem server >/dev/null 2>&1 & sleep 1 ; open http://localhost:8808
 
 alias gorm="cd ~/code/rm/main"
 alias  gob="cd ~/code/rm/board"
+
+alias gentags="find . -name "*.rb" | xargs ctags -a -e -f TAGS"
 
 function opengem {
   if [ -f Gemfile ]
