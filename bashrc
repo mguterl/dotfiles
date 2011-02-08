@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-export PATH="/Users/michaelguterl/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/mongodb/bin:$PATH"
+export PATH="/Users/michaelguterl/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/mongodb/bin:/usr/local/share/npm/bin:$PATH"
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
