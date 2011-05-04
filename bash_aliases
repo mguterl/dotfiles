@@ -11,7 +11,7 @@ alias gc="git commit -v"
 alias gd="git diff"
 alias gl="git pull --rebase"
 alias gp="git push"
-alias gst="git status"
+alias gst="git status -s"
 alias gcav="git commit -a -v"
 alias gcp="git cherry-pick"
 
