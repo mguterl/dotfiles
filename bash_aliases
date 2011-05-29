@@ -43,8 +43,10 @@ function opengem {
 }
 
 function mategem {
+  ORIG_EDITOR=$EDITOR
   EDITOR='mate'
   opengem $1;
+  export EDITOR=$ORIG_EDITOR
 }
 
 function yank { \cat $1 | pbcopy; }
