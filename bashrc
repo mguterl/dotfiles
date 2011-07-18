@@ -13,7 +13,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Prompt
-export PS1='\u@\h \[\033[1;33m\]\w\[\033[0m\]$(parse_git_branch)$ '
+export PS1='\h \[\033[1;33m\]\w\[\033[0m\]$(parse_git_branch)$ '
 
 # Misc
 export EDITOR="emacsclient"
