@@ -34,6 +34,8 @@ alias  gob="cd ~/code/rm/board"
 
 alias gentags="find . -name "*.rb" | xargs ctags -a -e -f TAGS"
 
+alias b="bundle exec"
+
 function opengem {
   if [ -f Gemfile ]
   then
