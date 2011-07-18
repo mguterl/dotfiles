@@ -14,6 +14,9 @@ alias gp="git push"
 alias gst="git status -s"
 alias gcav="git commit -a -v"
 alias gcp="git cherry-pick"
+alias l='git log --pretty=oneline --abbrev-commit'
+alias log='git log -v'
+alias logg='git log --graph --abbrev-commit --date=relative'
 
 alias ec="emacsclient --no-wait"
 
