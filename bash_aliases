@@ -36,6 +36,8 @@ alias gentags="find . -name "*.rb" | xargs ctags -a -e -f TAGS"
 
 alias b="bundle exec"
 
+alias vg='valgrind --leak-check=full --show-possibly-lost=no --dsymutil=yes'
+
 function opengem {
   if [ -f Gemfile ]
   then
