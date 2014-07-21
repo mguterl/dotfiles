@@ -2,3 +2,9 @@
 Thumbs.db
 capybara*.html
 .jhw-cache/
+.env
+.rvmrc
+TAGS
+*.swp
+latest.dump
+
