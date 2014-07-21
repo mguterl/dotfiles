@@ -29,9 +29,6 @@ alias svnrmall='svn status | grep "^\!" | awk "{print \$2}" | xargs svn rm'
 
 alias gemdocs="gem server >/dev/null 2>&1 & sleep 1 ; open http://localhost:8808"
 
-alias gorm="cd ~/code/rm/main"
-alias  gob="cd ~/code/rm/board"
-
 alias gentags="find . -name "*.rb" | xargs ctags -a -e -f TAGS"
 
 alias b="bundle exec"
