@@ -36,3 +36,6 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 fi
+
+# Allow C-s to work for saving in CLI vim
+stty -ixon
