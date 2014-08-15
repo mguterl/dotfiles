@@ -75,4 +75,6 @@ function pkill() {
     kill -9 $pid
     echo -n "Killed $1 (process $pid)"
 }
+
+alias serve="python -m SimpleHTTPServer 8000"
 alias tmux="tmux -2"
