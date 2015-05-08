@@ -1,3 +1,9 @@
+# local bin
+export PATH="~/bin:$PATH"
+
+# bundler binstubs
+export PATH="./bin:$PATH"
+
 # load bash aliases
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
