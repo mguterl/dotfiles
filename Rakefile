@@ -1,6 +1,6 @@
 require 'pathname'
 
-LINK_FILES = %w(bashrc bash_aliases bash_profile gemrc gitignore irbrc)
+LINK_FILES = %w(bashrc bash_aliases bash_profile gemrc gitignore irbrc tmux.conf)
 INSERT_FILES = %w(gitconfig)
 LINK_DIRECTORIES = %w(bin)
 
