@@ -1,3 +1,6 @@
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # local bin
 export PATH="~/bin:$PATH"
 
@@ -24,9 +27,6 @@ export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 # node version manager
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Allow C-s to work for saving in CLI vim
 stty -ixon
