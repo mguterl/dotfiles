@@ -1,6 +1,6 @@
 require 'pathname'
 
-LINK_FILES = %w(ackrc bashrc bash_aliases bash_profile gemrc gitignore irbrc profile railsrc rvmrc)
+LINK_FILES = %w(bashrc bash_aliases bash_profile gemrc gitignore irbrc)
 INSERT_FILES = %w(gitconfig)
 LINK_DIRECTORIES = %w(bin)
 
@@ -9,7 +9,7 @@ def stop_error(message)
   exit(1)
 end
 
-def symlink(target, link)
+def _symlink(target, link)
   puts "Linking #{link} => #{target}"
   if File.exist?(link) && Pathname.new(link).realpath.to_s != target
     stop_error("File exists: #{link}")
@@ -30,11 +30,11 @@ end
 desc "Install all dotfiles"
 task :install do
   LINK_FILES.each do |file|
-    symlink("#{pwd}/#{file}", "#{home}/.#{file}")
+    _symlink("#{pwd}/#{file}", "#{home}/.#{file}")
   end
 
   LINK_DIRECTORIES.each do |dir|
-    symlink("#{pwd}/#{dir}", "#{home}/#{dir}")
+    _symlink("#{pwd}/#{dir}", "#{home}/#{dir}")
   end
 
   INSERT_FILES.each do |file|
