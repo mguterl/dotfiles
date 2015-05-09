@@ -8,6 +8,7 @@
   lg = log -p
   pend = cherry -v origin/master
   fixup = commit --amend -C HEAD --date=""
+  ctags = !.git/hooks/ctags
 [apply]
   whitespace = nowarn
 [core]
@@ -37,4 +38,6 @@
 [merge "bundle"]
   name = updates the bundle
   driver = bundle
+[init]
+  templatedir = ~/.git_template
 # End Generated
