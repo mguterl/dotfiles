@@ -5,9 +5,6 @@
   br = branch
   co = checkout
   df = diff
-  lg = log -p
-  pend = cherry -v origin/master
-  fixup = commit --amend -C HEAD --date=""
   ctags = !.git/hooks/ctags
 [apply]
   whitespace = nowarn
@@ -35,9 +32,6 @@
 	default = tracking
 [branch]
 	autosetuprebase = always
-[merge "bundle"]
-  name = updates the bundle
-  driver = bundle
 [init]
   templatedir = ~/.git_template
 # End Generated
