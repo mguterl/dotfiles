@@ -4,7 +4,9 @@ export EDITOR='vim'
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # local bin
-export PATH="~/bin:$PATH"
+if [ -d "$HOME/bin" ] ; then
+  PATH="$HOME/bin:$PATH"
+fi
 
 # bundler binstubs
 export PATH="./bin:$PATH"
