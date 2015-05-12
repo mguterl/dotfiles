@@ -32,3 +32,6 @@ source $(brew --prefix nvm)/nvm.sh
 
 # Allow C-s to work for saving in CLI vim
 stty -ixon
+
+# tmuxinator bash completion
+source ~/tmuxinator.bash
