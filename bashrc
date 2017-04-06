@@ -10,6 +10,12 @@ fi
 
 # bundler binstubs
 export PATH="./bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin"
+
+# setup nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 # load bash aliases
 if [ -f ~/.bash_aliases ]; then
@@ -27,10 +33,6 @@ function _update_ps1() {
 }
 
 export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-
-# node version manager
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
 
 # Allow C-s to work for saving in CLI vim
 stty -ixon
