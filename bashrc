@@ -38,11 +38,3 @@ stty -ixon
 # tmuxinator bash completion
 source ~/tmuxinator.bash
 
-hitch() {
-  command hitch "$@"
-  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
-}
-alias unhitch='hitch -u'
-
-# Persist pair info between terminal instances
-hitch
