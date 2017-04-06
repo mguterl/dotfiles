@@ -9,7 +9,7 @@
 [apply]
   whitespace = nowarn
 [core]
-	excludesfile = /Users/michaelguterl/.gitignore
+  excludesfile = /Users/michaelguterl/.gitignore
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [color]
   branch = auto
@@ -29,9 +29,9 @@
   changed = red
   untracked = cyan
 [push]
-	default = tracking
+  default = tracking
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [init]
   templatedir = ~/.git_template
 # End Generated

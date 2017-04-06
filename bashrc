@@ -37,6 +37,6 @@ export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 # Allow C-s to work for saving in CLI vim
 stty -ixon
 
-# tmuxinator bash completion
-source ~/tmuxinator.bash
-
+export SKIP_COVERALLS=1
+export DISABLE_MEAN_TIME_REPORTER=1
+export SKIP_MINITEST_CI=1
