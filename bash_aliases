@@ -17,3 +17,8 @@ alias tma="tmux attach-session -t"
 alias tmc="clear && tmux clear-history"
 alias tmk="tmux kill-session"
 alias tm="tmux new -s"
+
+// https://twitter.com/derrickreimer/status/999667665118605313/photo/1
+function branchify {
+  git branch $1 && git reset --hard HEAD~ && git checkout $1
+}
