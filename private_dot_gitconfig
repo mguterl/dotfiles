@@ -4,3 +4,8 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+[alias]
+        st = status
+        ci = commit
+        co = checkout
+        br = branch
