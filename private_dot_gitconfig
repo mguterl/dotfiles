@@ -1,3 +1,6 @@
 [user]
 	name = Michael Guterl
 	email = michael@diminishing.org
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
