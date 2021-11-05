@@ -1,0 +1,1 @@
+{"title":"Tab modifications","rules":[{"description":"Change tab key to command+control+option+shift if pressed with other keys","manipulators":[{"type":"basic","from":{"key_code":"tab"},"to":[{"repeat":false,"modifiers":["left_gui","left_control","left_alt","left_shift"]}],"to_if_alone":[{"repeat":false,"key_code":"tab"}]}]}]}
