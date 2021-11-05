@@ -1,0 +1,28 @@
+export ZSH="/Users/michaelguterl/.oh-my-zsh"
+plugins=(git docker zsh-interactive-cd)
+source $ZSH/oh-my-zsh.sh
+
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH=$HOME/bin:$PATH
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+
+# https://twitter.com/derrickreimer/status/999667665118605313/photo/1
+function branchify {
+  git branch $1 && git reset --hard HEAD~ && git checkout $1
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+eval "$(starship init zsh)"
