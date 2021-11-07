@@ -1,0 +1,78 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $brews := list
+    "coreutils"
+    "asdf"
+    "awscli"
+    "brew-cask-completion"
+    "chezmoi"
+    "curl"
+    "fzf"
+    "gawk"
+    "git"
+    "gnupg"
+    "ripgrep"
+    "starship"
+    "wifi-password"
+-}}
+
+{{ $casks := list
+    "1password-beta"
+    "1password-cli"
+    "alfred"
+    "bartender"
+    "daisydisk"
+    "discord"
+    "docker"
+    "dropbox"
+    "firefox"
+    "font-jetbrains-mono"
+    "font-jetbrains-mono-nerd-font"
+    "fork"
+    "google-chrome"
+    "istat-menus"
+    "iterm2"
+    "karabiner-elements"
+    "keepingyouawake"
+    "monodraw"
+    "omnifocus"
+    "rectangle"
+    "slack"
+    "spotify"
+    "visual-studio-code"
+    "vlc"
+    "zoom"
+-}}
+
+{{ if .personal -}}
+{{ $brews = concat $brews (list
+    "asimov"
+    "youtube-dl") -}}
+{{ $casks = concat $casks (list
+    "anylist"
+    "backblaze"
+    "mullvadvpn"
+    "soundsource"
+    "telegram-desktop"
+    "the-unarchiver"
+    "timemachineeditor") -}}
+{{ end -}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "aws/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "melonamin/formulae"
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
