@@ -1,6 +1,17 @@
-{{- $personal := true -}}{{/* true if this machine should have personal secrets from LastPass */}}
-{{- $work := false -}}
+{{- $personal := false }}
+{{- $work := false }}
+
+{{- $email := promptString "email" -}}
+
+{{- if eq $email "guterlm@twitch.tv" -}}
+{{-   $personal = false -}}
+{{-   $work = true -}}
+{{- else -}}
+{{-   $personal = true -}}
+{{-   $work = false -}}
+{{- end -}}
 
 [data]
+  email = {{ $email | quote }}
   personal = {{ $personal }}
   work = {{ $work }}
