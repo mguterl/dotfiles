@@ -8,6 +8,9 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+{{- if .work }}
+export PATH="$HOME/.toolbox/bin:$PATH"
+{{- end }}
 export PATH=$HOME/bin:$PATH
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
