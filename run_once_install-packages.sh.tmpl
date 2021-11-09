@@ -43,7 +43,6 @@ set -eufo pipefail
     "spotify"
     "visual-studio-code"
     "vlc"
-    "zoom"
 -}}
 
 {{ if .personal -}}
@@ -57,7 +56,8 @@ set -eufo pipefail
     "soundsource"
     "telegram-desktop"
     "the-unarchiver"
-    "timemachineeditor") -}}
+    "timemachineeditor"
+    "zoom") -}}
 {{ end -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
