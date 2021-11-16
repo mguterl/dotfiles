@@ -60,6 +60,12 @@ set -eufo pipefail
     "zoom") -}}
 {{ end -}}
 
+{{ if .work -}}
+{{ $brews = concat $brews (list
+    "java11"
+    "maven") -}}
+{{ end -}}
+
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "aws/tap"
 tap "homebrew/bundle"
