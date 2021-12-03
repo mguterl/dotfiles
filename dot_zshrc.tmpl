@@ -23,6 +23,9 @@ export PATH=$HOME/bin:$PATH
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
+{{- if .work }}
+alias bb='brazil-build'
+{{- end }}
 
 # https://twitter.com/derrickreimer/status/999667665118605313/photo/1
 function branchify {
