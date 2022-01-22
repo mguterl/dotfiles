@@ -8,10 +8,6 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
-{{- if .work }}
-export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
-export PATH="$HOME/.toolbox/bin:$PATH"
-{{- end }}
 export PATH=$HOME/bin:$PATH
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -23,9 +19,6 @@ export PATH=$HOME/bin:$PATH
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
-{{- if .work }}
-alias bb='brazil-build'
-{{- end }}
 
 # https://twitter.com/derrickreimer/status/999667665118605313/photo/1
 function branchify {
