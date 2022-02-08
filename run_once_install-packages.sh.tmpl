@@ -5,7 +5,6 @@ set -eufo pipefail
 {{ $brews := list
     "coreutils"
     "asdf"
-    "awscli"
     "brew-cask-completion"
     "chezmoi"
     "curl"
@@ -40,6 +39,7 @@ set -eufo pipefail
 {{ if .personal -}}
 {{ $brews = concat $brews (list
     "asimov"
+    "awscli"
     "yt-dlp") -}}
 {{ $casks = concat $casks (list
     "1password-beta"
