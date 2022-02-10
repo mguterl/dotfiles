@@ -7,3 +7,6 @@ success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being
 
 [aws]
 disabled = true
+
+[gcloud]
+disabled = true
