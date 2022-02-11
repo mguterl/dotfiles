@@ -1,8 +1,8 @@
 [user]
-	name = Michael Guterl
+	name = Mike Guterl
 	email = {{ .email | quote }}
 [core]
-	editor = vim
+	editor = code -w
 	excludesfile = ~/.gitignore
 	commitGraph = true
 [alias]
@@ -13,7 +13,7 @@
 [init]
         defaultBranch = main
 [credential]
-	helper = 
+	helper =
 	helper = store --file /opt/dev/var/private/git_credential_store
 [diff]
 	algorithm = patience
