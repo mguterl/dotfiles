@@ -13,6 +13,8 @@
 [init]
         defaultBranch = main
 {{- if .work }}
+[include]
+        path = /Users/mguterl/.config/dev/gitconfig
 [credential]
 	helper = store --file /opt/dev/var/private/git_credential_store
 [diff]
