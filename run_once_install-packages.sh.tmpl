@@ -42,6 +42,7 @@ set -eufo pipefail
 {{ $brews = concat $brews (list
     "asimov"
     "awscli"
+    "ffmpeg"
     "qmk/qmk/qmk"
     "yt-dlp") -}}
 {{ $casks = concat $casks (list
@@ -72,6 +73,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "melonamin/formulae"
+tap "qmk/qmk"
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
