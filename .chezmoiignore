@@ -1,5 +1,12 @@
 README.md
 
 {{- if .work }}
+.aws
 .ssh
 {{- end }}
+
+{{- if .work_linux }}
+.config/karabiner
+Library
+{{- end }}
+
