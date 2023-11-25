@@ -1,17 +1,27 @@
 {{- $personal := false }}
 {{- $work := false }}
+{{- $work_mac := false }}
+{{- $work_linux := false }}
 
-{{- $email := promptString "email" -}}
+{{ $email := env "EMAIL" }}
+{{ if not $email }}
+{{   $email = promptStringOnce . "email" "Email address" }}
+{{ end }}
 
 {{- if eq $email "mike.guterl@shopify.com" -}}
-{{-   $personal = false -}}
 {{-   $work = true -}}
+{{-   if eq .chezmoi.os "darwin" -}}
+{{-     $work_mac = true -}}
+{{-   else -}}
+{{-     $work_linux = true -}}
+{{-   end -}}
 {{- else -}}
 {{-   $personal = true -}}
-{{-   $work = false -}}
 {{- end -}}
 
 [data]
   email = {{ $email | quote }}
   personal = {{ $personal }}
   work = {{ $work }}
+  work_linux = {{ $work_linux }}
+  work_mac = {{ $work_mac }}
