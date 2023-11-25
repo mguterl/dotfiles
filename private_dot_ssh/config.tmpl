@@ -1,7 +1,5 @@
-{{- if .personal }}
-Include ~/.orbstack/ssh/config
-
-{{- end }}
+{{- if .personal }}Include ~/.orbstack/ssh/config
+{{ end }}
 Host *
   AddKeysToAgent yes
   UseKeychain yes
