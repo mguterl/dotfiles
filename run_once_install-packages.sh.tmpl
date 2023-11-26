@@ -77,6 +77,8 @@ brew "{{ . }}"
 cask "{{ . }}"
 {{ end -}}
 EOF
+
+/opt/homebrew/opt/fzf/install
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
