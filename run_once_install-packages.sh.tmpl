@@ -2,6 +2,7 @@
 
 set -eufo pipefail
 
+{{- if eq .chezmoi.os "darwin" }}
 {{ $brews := list
     "coreutils"
     "asdf"
@@ -76,3 +77,8 @@ brew "{{ . }}"
 cask "{{ . }}"
 {{ end -}}
 EOF
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+
+{{- end }}
