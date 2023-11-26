@@ -7,8 +7,10 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+{{- if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+{{- end }}
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
@@ -27,13 +29,16 @@ function branchify {
   git branch $1 && git reset --hard HEAD~ && git checkout $1
 }
 
+{{- if .work_linux }}
+export PATH="$HOME/.fzf/bin:$PATH"
+{{- end }}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 {{ if .personal }}
 . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
 {{ end }}
 
-{{- if .work }}
+{{- if .work_mac }}
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
 
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)

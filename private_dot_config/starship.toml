@@ -11,3 +11,15 @@ disabled = true
 
 [gcloud]
 disabled = true
+
+[ruby]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[hostname]
+disabled = true
+
+[container]
+disabled = true
