@@ -30,6 +30,9 @@ function branchify {
 }
 
 {{- if .work_linux }}
+# Useful aliases
+[ -f /etc/zsh/zshrc.default.inc.zsh ] && source /etc/zsh/zshrc.default.inc.zsh
+
 export PATH="$HOME/.fzf/bin:$PATH"
 {{- end }}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
