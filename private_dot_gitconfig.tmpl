@@ -11,6 +11,16 @@
         br = branch
 [init]
         defaultBranch = main
+[push]
+	autoSetupRemote = true
+[branch]
+	sort = -committerdate
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
+[rerere]
+	enabled = true
 {{- if .work_mac }}
 [include]
         path = /Users/mguterl/.config/dev/gitconfig
