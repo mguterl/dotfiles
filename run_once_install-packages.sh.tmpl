@@ -89,8 +89,10 @@ if ! command -v rg &> /dev/null; then
 fi
 
 # install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --completion --no-bash --no-update-rc --key-bindings
+if [ ! -d ~/.fzf ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --completion --no-bash --no-update-rc --key-bindings
+fi
 
 # install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
