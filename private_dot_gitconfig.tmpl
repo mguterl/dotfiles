@@ -15,8 +15,10 @@
 	autoSetupRemote = true
 [branch]
 	sort = -committerdate
+{{- if .personal }}
 [merge]
 	conflictstyle = zdiff3
+{{- end }}
 [diff]
 	algorithm = histogram
 [rerere]
