@@ -470,7 +470,7 @@ local servers = {
     },
   },
 
-  ruby_ls = {},
+  ruby_lsp = {},
   sorbet = {},
 }
 
