@@ -38,7 +38,7 @@ export PATH="$HOME/.fzf/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 {{ if .personal }}
-. "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+eval "$($(brew --prefix)/bin/mise activate zsh)"
 {{ end }}
 
 {{- if .work_mac }}

@@ -5,7 +5,7 @@ set -eufo pipefail
 {{- if eq .chezmoi.os "darwin" }}
 {{ $brews := list
     "coreutils"
-    "asdf"
+    "mise"
     "brew-cask-completion"
     "chezmoi"
     "curl"
