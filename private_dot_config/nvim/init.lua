@@ -503,6 +503,7 @@ local servers = {
 
   ruby_lsp = {},
   sorbet = {},
+  ts_ls = {},
 }
 
 -- Setup neovim lua configuration
