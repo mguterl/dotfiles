@@ -4,7 +4,9 @@ set -eufo pipefail
 
 {{- if eq .chezmoi.os "darwin" }}
 
-brew install chezmoi coreutils curl ffmpeg fzf git gh neovim ripgrep starship tmux tree
+brew install chezmoi coreutils curl ffmpeg fzf git gh jq ripgrep starship tree
+brew install fontforge
+brew install neovim tmux reattach-to-user-namespace luarocks
 brew install --cask 1password 1password-cli
 brew install --cask alfred bartender istat-menus karabiner-elements keepingyouawake obsidian rectangle
 brew install --cask docker iterm2 monodraw visual-studio-code
