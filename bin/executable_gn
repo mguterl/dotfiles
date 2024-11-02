@@ -1,14 +1,20 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
-# https://raw.github.com/garybernhardt/dotfiles/master/bin/gn
+# https://github.com/garybernhardt/dotfiles/blob/main/bin/gn
 #
-# Print a diff summary like:
+# Print a summary of a piped diff like:
 #
-#   $ git diff 'master~10..master' | gn
-#   293 lines of diff
-#   185 lines added
-#   19 lines removed
-#   +166 lines net change
+#   $ git diff main | gn
+#   49 lines of diff
+#   +11 lines (+18, -7)
+#   +77 words (+110, -33)
+#
+# or with a diff/patch file:
+#
+#   $ gn my-awesome-patch.diff
+#   49 lines of diff
+#   +11 lines (+18, -7)
+#   +77 words (+110, -33)
 
 import sys, os, re, fileinput
 
@@ -21,12 +27,23 @@ def get_lines(diff_lines):
         if line.startswith('-') and not line.startswith('---')]
     return added_lines, removed_lines
 
+def get_words(added_lines, removed_lines):
+    def word_count(lines):
+        return [word
+                for line in lines
+                for word in line.split()
+                if re.match(r'^\w+', word)]
+
+    return word_count(added_lines), word_count(removed_lines)
 
 if __name__ == '__main__':
     diff_lines = list(fileinput.input())
     added_lines, removed_lines = get_lines(diff_lines)
-    print '%i lines of diff' % len(diff_lines)
-    print '%i lines added' % len(added_lines)
-    print '%i lines removed' % len(removed_lines)
-    print '%+i lines net change' % (len(added_lines) - len(removed_lines))
-
+    added_words, removed_words = get_words(added_lines, removed_lines)
+    print('%i lines of diff' % len(diff_lines))
+    print('%+i lines (+%i, -%i)' % (len(added_lines) - len(removed_lines),
+                                    len(added_lines),
+                                    len(removed_lines)))
+    print('%+i words (+%i, -%i)' % (len(added_words) - len(removed_words),
+                                    len(added_words),
+                                    len(removed_words)))
