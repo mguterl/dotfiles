@@ -4,19 +4,72 @@ set -eufo pipefail
 
 {{- if eq .chezmoi.os "darwin" }}
 
-brew install chezmoi coreutils curl ffmpeg fzf git gh jq ripgrep starship tree
-brew install fontforge
-brew install neovim tmux reattach-to-user-namespace luarocks
-brew install --cask 1password 1password-cli
-brew install --cask alfred karabiner-elements keepingyouawake obsidian rectangle
-brew install --cask iterm2 monodraw visual-studio-code
-brew install --cask spotify notunes
-brew install --cask discord slack
+install_brew_package() {
+    if ! brew list "$1" &> /dev/null; then
+        brew install "$1"
+    fi
+}
+
+install_brew_cask() {
+    if ! brew list --cask "$1" &> /dev/null; then
+        brew install --cask "$1"
+    fi
+}
+
+install_brew_package chezmoi
+install_brew_package coreutils
+install_brew_package curl
+install_brew_package ffmpeg
+install_brew_package fontforge
+install_brew_package fzf
+install_brew_package gh
+install_brew_package git
+install_brew_package jq
+install_brew_package luarocks
+install_brew_package neovim
+install_brew_package reattach-to-user-namespace
+install_brew_package ripgrep
+install_brew_package starship
+install_brew_package tmux
+install_brew_package tree
+
+install_brew_cask 1password
+install_brew_cask 1password-cli
+install_brew_cask alfred
+install_brew_cask discord
+install_brew_cask iterm2
+install_brew_cask karabiner-elements
+install_brew_cask keepingyouawake
+install_brew_cask monodraw
+install_brew_cask notunes
+install_brew_cask obsidian
+install_brew_cask rectangle
+install_brew_cask slack
+install_brew_cask spotify
+install_brew_cask visual-studio-code
 
 {{ if .personal -}}
 
-brew install asimov qmk/qmk/qmk yt-dlp
-brew install --cask anylist backblaze bartender daisydisk docker dropbox firefox google-chrome iina istat-menus mullvadvpn omnifocus soundsource the-unarchiver vlc zoom
+install_brew_package asimov
+install_brew_package qmk/qmk/qmk
+install_brew_package yt-dlp
+
+install_brew_cask anylist
+install_brew_cask backblaze
+install_brew_cask bartender
+install_brew_cask daisydisk
+install_brew_cask docker
+install_brew_cask dropbox
+install_brew_cask firefox
+install_brew_cask google-chrome
+install_brew_cask iina
+install_brew_cask istat-menus
+install_brew_cask mullvadvpn
+install_brew_cask omnifocus
+install_brew_cask soundsource
+install_brew_cask the-unarchiver
+install_brew_cask vlc
+install_brew_cask zoom
 
 {{- end }} # personal
 
@@ -40,8 +93,13 @@ fi
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # install zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
 
 # install starship
-curl -sS https://starship.rs/install.sh | sh -s -- -y
+if ! command -v starship &> /dev/null; then
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
+fi
+
 {{- end }} # linux
