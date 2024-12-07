@@ -8,16 +8,15 @@ brew install chezmoi coreutils curl ffmpeg fzf git gh jq ripgrep starship tree
 brew install fontforge
 brew install neovim tmux reattach-to-user-namespace luarocks
 brew install --cask 1password 1password-cli
-brew install --cask alfred bartender istat-menus karabiner-elements keepingyouawake obsidian rectangle
-brew install --cask docker iterm2 monodraw visual-studio-code
-brew install --cask iina spotify vlc
+brew install --cask alfred karabiner-elements keepingyouawake obsidian rectangle
+brew install --cask iterm2 monodraw visual-studio-code
+brew install --cask spotify notunes
 brew install --cask discord slack
-brew install --cask notunes
 
 {{ if .personal -}}
 
 brew install asimov qmk/qmk/qmk yt-dlp
-brew install --cask anylist backblaze daisydisk dropbox firefox google-chrome mullvadvpn omnifocus soundsource the-unarchiver zoom
+brew install --cask anylist backblaze bartender daisydisk docker dropbox firefox google-chrome iina istat-menus mullvadvpn omnifocus soundsource the-unarchiver vlc zoom
 
 {{- end }} # personal
 
