@@ -95,10 +95,29 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'cappyzawa/trim.nvim', -- Trim trailing whitespace and lines
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  {
+    -- Trim trailing whitespace and lines
+    'cappyzawa/trim.nvim',
+    opts = {
+      -- if you want to ignore markdown file.
+      -- you can specify filetypes.
+      ft_blocklist = {"markdown"},
 
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
+      -- if you want to remove multiple blank lines
+      patterns = {
+        [[%s/\(\n\n\)\n\+/\1/]],   -- replace multiple blank lines with a single line
+      },
+
+      -- highlight trailing spaces
+      highlight = true
+    },
+  },
+
+   -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',
+
+  {
+    -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -112,8 +131,8 @@ require('lazy').setup({
     },
   },
 
-  { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
+  {
+    'folke/which-key.nvim', -- Useful plugin to show you pending keybinds.
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
       icons = {
@@ -131,7 +150,8 @@ require('lazy').setup({
     }
   },
 
-  { -- Fuzzy Finder (files, lsp, etc)
+  {
+    -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
@@ -191,8 +211,7 @@ require('lazy').setup({
 
   -- LSP Plugins
   {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
+    -- Lua LSP for Neovim config
     'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
@@ -202,9 +221,10 @@ require('lazy').setup({
       },
     },
   },
+
   { 'Bilal2453/luvit-meta', lazy = true },
+
   {
-    -- Main LSP configuration
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -213,7 +233,6 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
@@ -547,8 +566,7 @@ require('lazy').setup({
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup { use_icons = true }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -631,20 +649,6 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 }, {})
-
-require('trim').setup({
-  -- if you want to ignore markdown file.
-  -- you can specify filetypes.
-  ft_blocklist = {"markdown"},
-
-  -- if you want to remove multiple blank lines
-  patterns = {
-    [[%s/\(\n\n\)\n\+/\1/]],   -- replace multiple blank lines with a single line
-  },
-
-  -- highlight trailing spaces
-  highlight = true
-})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
