@@ -635,6 +635,39 @@ require('lazy').setup({
       vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
     end
   },
+
+  {
+    "vim-test/vim-test",
+    dependencies = {
+      "tpope/vim-dispatch",
+      "jgdavey/tslime.vim",
+    },
+    keys = {
+      { "<leader>tt", "<cmd>TestNearest<CR>", desc = "Run nearest test" },
+      { "<leader>tf", "<cmd>TestFile<CR>", desc = "Run test file" },
+      { "<leader>ts", "<cmd>TestSuite<CR>", desc = "Run test suite" },
+      { "<leader>tl", "<cmd>TestLast<CR>", desc = "Run last test" },
+      { "<leader>tv", "<cmd>TestVisit<CR>", desc = "Visit test file" },
+    },
+    config = function()
+      -- Default strategy
+      vim.g['test#strategy'] = "tslime"
+
+      -- Key mappings for different strategies
+      vim.keymap.set('n', '<leader>td', function()
+        vim.g['test#strategy'] = "dispatch"
+        print("Test strategy: dispatch")
+      end)
+
+      vim.keymap.set('n', '<leader>ts', function()
+        vim.g['test#strategy'] = "tslime"
+        print("Test strategy: tslime")
+      end)
+      -- Optional: Set other vim-test configurations
+      -- vim.g['test#javascript#jest#options'] = '--watch'
+      -- vim.g['test#python#pytest#options'] = '--verbose'
+    end,
+  }
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
