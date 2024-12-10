@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Copy relative path
-vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>')
+vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>', { desc = "Copy relative path", silent = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
