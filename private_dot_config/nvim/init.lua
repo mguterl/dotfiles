@@ -9,7 +9,6 @@ vim.g.maplocalleader = ' '
 
 -- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<CR>', '<cmd>nohlsearch<CR>')
 
 -- Make line numbers default
 vim.opt.number = true
@@ -68,6 +67,20 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Use Enter to clear search highlights
+vim.keymap.set('n', '<CR>', '<cmd>nohlsearch<CR>')
+
+-- Use Enter to open quickfix entries
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', '<CR>', { noremap = true, silent = true })
+  end
+})
+
+-- Copy relative path
+vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -81,9 +94,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
--- Copy relative path
-vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>')
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
