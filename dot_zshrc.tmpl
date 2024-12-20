@@ -35,8 +35,8 @@ function branchify {
 
 export PATH="$HOME/.fzf/bin:$PATH"
 {{- end }}
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
 {{ if .personal }}
 eval "$($(brew --prefix)/bin/mise activate zsh)"
 {{ end }}
@@ -48,5 +48,4 @@ eval "$($(brew --prefix)/bin/mise activate zsh)"
 
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 {{- end }}
-
 eval "$(starship init zsh)"
