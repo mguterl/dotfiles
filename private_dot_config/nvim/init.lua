@@ -184,11 +184,11 @@ require('lazy').setup({
     opts = {
       -- if you want to ignore markdown file.
       -- you can specify filetypes.
-      ft_blocklist = {"markdown"},
+      ft_blocklist = { "markdown" },
 
       -- if you want to remove multiple blank lines
       patterns = {
-        [[%s/\(\n\n\)\n\+/\1/]],   -- replace multiple blank lines with a single line
+        [[%s/\(\n\n\)\n\+/\1/]], -- replace multiple blank lines with a single line
       },
 
       -- highlight trailing spaces
@@ -196,7 +196,7 @@ require('lazy').setup({
     },
   },
 
-   -- Detect tabstop and shiftwidth automatically
+  -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
   {
@@ -216,13 +216,13 @@ require('lazy').setup({
 
   {
     'folke/which-key.nvim', -- Useful plugin to show you pending keybinds.
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    event = 'VimEnter',     -- Sets the loading event to 'VimEnter'
     opts = {
       icons = {
         mappings = true,
       },
       spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode',     mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -305,7 +305,7 @@ require('lazy').setup({
     },
   },
 
-  { 'Bilal2453/luvit-meta', lazy = true },
+  { 'Bilal2453/luvit-meta',     lazy = true },
 
   {
     'neovim/nvim-lspconfig',
@@ -316,7 +316,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -703,11 +703,12 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim', opts = {} },
 
   {
-    'alexghergh/nvim-tmux-navigation', config = function()
+    'alexghergh/nvim-tmux-navigation',
+    config = function()
       local nvim_tmux_nav = require('nvim-tmux-navigation')
 
       nvim_tmux_nav.setup {
-          disable_when_zoomed = true -- defaults to false
+        disable_when_zoomed = true -- defaults to false
       }
 
       vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
@@ -727,10 +728,10 @@ require('lazy').setup({
     },
     keys = {
       { "<leader>tt", "<cmd>TestNearest<CR>", desc = "Run nearest test" },
-      { "<leader>tf", "<cmd>TestFile<CR>", desc = "Run test file" },
-      { "<leader>ts", "<cmd>TestSuite<CR>", desc = "Run test suite" },
-      { "<leader>tl", "<cmd>TestLast<CR>", desc = "Run last test" },
-      { "<leader>tv", "<cmd>TestVisit<CR>", desc = "Visit test file" },
+      { "<leader>tf", "<cmd>TestFile<CR>",    desc = "Run test file" },
+      { "<leader>ts", "<cmd>TestSuite<CR>",   desc = "Run test suite" },
+      { "<leader>tl", "<cmd>TestLast<CR>",    desc = "Run last test" },
+      { "<leader>tv", "<cmd>TestVisit<CR>",   desc = "Visit test file" },
     },
     config = function()
       -- Default strategy
@@ -765,9 +766,9 @@ require('lazy').setup({
       words = { enabled = true },
     },
     keys = {
-      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+      { "<leader>bd", function() Snacks.bufdelete() end,       desc = "Delete Buffer" },
       { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Delete Other Buffers" },
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+      { "<leader>gb", function() Snacks.git.blame_line() end,  desc = "Git Blame Line" },
     },
   },
 
