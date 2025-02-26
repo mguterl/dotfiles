@@ -11,18 +11,36 @@
         br = branch
 [init]
         defaultBranch = main
+[pull]
+	rebase = true
 [push]
+	default = simple
 	autoSetupRemote = true
+	followTags = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [branch]
 	sort = -committerdate
-{{- if .personal }}
+[commit]
+	verbose = true
 [merge]
 	conflictstyle = zdiff3
-{{- end }}
 [diff]
 	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[column]
+	ui = auto
 [rerere]
 	enabled = true
+	autoupdate = true
 {{- if .work_mac }}
 [include]
         path = /Users/mguterl/.config/dev/gitconfig
