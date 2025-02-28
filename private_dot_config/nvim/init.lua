@@ -757,6 +757,86 @@ require('lazy').setup({
     },
   },
 
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    dependencies = {
+      "zbirenbaum/copilot-cmp",
+    },
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<M-l>",
+            accept_word = "<M-k>",
+            accept_line = "<M-j>",
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>",
+          },
+          layout = {
+            position = "bottom", -- | top | left | right
+            ratio = 0.4,
+          },
+        },
+        filetypes = {
+          yaml = false,
+          markdown = true,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
+        },
+        copilot_node_command = 'node', -- Node.js version must be > 16.x
+        server_opts_overrides = {},
+      })
+
+      -- Configure copilot-cmp
+      require("copilot_cmp").setup()
+    end,
+  },
+
+  -- Add copilot-cmp as a separate spec to ensure proper loading
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup({
+        formatters = {
+          label = require("copilot_cmp.format").format_label_text,
+          insert_text = require("copilot_cmp.format").format_insert_text,
+          preview = require("copilot_cmp.format").deindent,
+        },
+        mapping = {
+          -- Use <Tab> to confirm completion
+          ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            if require("cmp").visible() and require("cmp").get_selected_entry() then
+              require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false })
+            else
+              fallback()
+            end
+          end),
+        },
+      })
+    end,
+  },
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   --    up-to-date with whatever is in the kickstart repo.
