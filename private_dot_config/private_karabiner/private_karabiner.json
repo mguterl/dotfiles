@@ -30,9 +30,15 @@
                         ]
                     },
                     {
-                        "description": "Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
+                        "description": "Change caps_lock to control if pressed with other keys, to escape if pressed alone (Built-in keyboard only).",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
@@ -44,9 +50,15 @@
                         ]
                     },
                     {
-                        "description": "Change tab key to command+control+option+shift if pressed with other keys",
+                        "description": "Change tab key to command+control+option+shift if pressed with other keys (Built-in keyboard only)",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [{ "is_built_in_keyboard": true }],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": { "key_code": "tab" },
                                 "to": [
                                     {
