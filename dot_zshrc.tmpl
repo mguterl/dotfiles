@@ -8,44 +8,29 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 {{- if eq .chezmoi.os "darwin" }}
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 {{- end }}
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
 # https://twitter.com/derrickreimer/status/999667665118605313/photo/1
 function branchify {
   git branch $1 && git reset --hard HEAD~ && git checkout $1
 }
 
-{{- if .work_linux }}
-# Useful aliases
-[ -f /etc/zsh/zshrc.default.inc.zsh ] && source /etc/zsh/zshrc.default.inc.zsh
-
-export PATH="$HOME/.fzf/bin:$PATH"
-{{- end }}
-
 command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
-{{ if .personal }}
-eval "$($(brew --prefix)/bin/mise activate zsh)"
-{{ end }}
 
 {{- if .work_mac }}
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }
 
-[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
-
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+
+# Added by tec agent
+[[ -x /Users/mguterl/.local/state/tec/profiles/base/current/global/init ]] && eval "$(/Users/mguterl/.local/state/tec/profiles/base/current/global/init zsh)"
 {{- end }}
+
+# Activate mise to override Homebrew versions
+eval "$($(brew --prefix)/bin/mise activate zsh)"
+
+# Personal bin directories have highest priority
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
 eval "$(starship init zsh)"
