@@ -1,3 +1,18 @@
 #!/bin/bash
 
-git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
+# Detect the default branch (main, master, or custom)
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+
+if [ -z "$DEFAULT_BRANCH" ]; then
+  # Fallback to common defaults
+  if git show-ref --verify --quiet refs/heads/main; then
+    DEFAULT_BRANCH="main"
+  elif git show-ref --verify --quiet refs/heads/master; then
+    DEFAULT_BRANCH="master"
+  else
+    echo "Error: Could not determine default branch" >&2
+    exit 1
+  fi
+fi
+
+git branch --merged "$DEFAULT_BRANCH" | grep -v "\* $DEFAULT_BRANCH" | xargs -n 1 git branch -d

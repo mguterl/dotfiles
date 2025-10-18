@@ -1,3 +1,4 @@
 font-family = BerkeleyMono Nerd Font
 font-size = 15
 theme = Catppuccin Mocha
+keybind = shift+enter=text:\x1b\r

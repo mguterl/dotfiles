@@ -810,7 +810,11 @@ require('lazy').setup({
           cvs = false,
           ["."] = false,
         },
-        copilot_node_command = 'node', -- Node.js version must be > 16.x
+        copilot_node_command = {{ if .work_mac -}}
+          vim.fn.expand("$HOME/.local/share/mise/installs/node/22/bin/node")
+        {{- else -}}
+          'node'
+        {{- end }}, -- Node.js version must be greater than what core provides
         server_opts_overrides = {},
       })
 
