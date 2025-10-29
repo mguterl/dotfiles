@@ -653,16 +653,87 @@ require('lazy').setup({
       -- Default strategy
       vim.g['test#strategy'] = "tslime"
 
-      -- Key mappings for different strategies
+      -- Configuration for Shopify dev integration
+      vim.g.test_ruby_dev_parallel_threshold = 500
+      vim.g.test_ruby_dev_enabled = true
+
+      -- Helper function to check if Shopify dev.yml exists
+      local function has_shopify_dev()
+        local dev_yml_paths = {
+          vim.fn.getcwd() .. '/dev.yml',
+          vim.fn.getcwd() .. '/.shopify-build/dev.yml'
+        }
+        for _, path in ipairs(dev_yml_paths) do
+          if vim.fn.filereadable(path) == 1 then
+            return true
+          end
+        end
+        return false
+      end
+
+      -- Custom transformation function for Shopify dev
+      local function shopify_dev_transform(cmd)
+        -- Only proceed if dev integration is enabled and dev.yml exists
+        if not vim.g.test_ruby_dev_enabled or not has_shopify_dev() then
+          return cmd
+        end
+
+        -- Only transform Rails test commands
+        if not string.match(cmd, "%./bin/rails test") then
+          return cmd
+        end
+
+        -- Replace ./bin/rails test with dev test
+        cmd = string.gsub(cmd, "%./bin/rails test", "dev test")
+
+        -- Determine if we should add parallel flag
+        local should_add_parallel = false
+        local threshold = vim.g.test_ruby_dev_parallel_threshold or 500
+
+        -- Check if this is a nearest test (single test) - don't parallelize
+        if string.match(cmd, "dev test.*:%d+") then
+          -- This is a nearest test (has line number), don't add -p
+          should_add_parallel = false
+        else
+          -- This is either a file test or suite test
+          -- For file tests, check line count
+          local current_file = vim.fn.expand('%:p')
+          if vim.fn.filereadable(current_file) == 1 then
+            local line_count = vim.fn.line('$')
+            if line_count >= threshold then
+              should_add_parallel = true
+            end
+          else
+            -- Suite test (no specific file), always use parallel
+            should_add_parallel = true
+          end
+        end
+
+        -- Add -p flag right after "dev test" if needed
+        if should_add_parallel then
+          cmd = string.gsub(cmd, "dev test", "dev test -p")
+        end
+
+        return cmd
+      end
+
+      -- Register custom transformation with vim-test
+      vim.g['test#custom_transformations'] = {
+        shopify_dev = shopify_dev_transform
+      }
+      vim.g['test#transformation'] = 'shopify_dev'
+
+      -- Key mappings for different strategies (fixed conflict)
       vim.keymap.set('n', '<leader>td', function()
         vim.g['test#strategy'] = "dispatch"
         print("Test strategy: dispatch")
-      end)
+      end, { desc = "Test strategy: dispatch" })
 
-      vim.keymap.set('n', '<leader>ts', function()
+      vim.keymap.set('n', '<leader>tS', function()
         vim.g['test#strategy'] = "tslime"
         print("Test strategy: tslime")
-      end)
+      end, { desc = "Test strategy: tslime" })
+
       -- Optional: Set other vim-test configurations
       -- vim.g['test#javascript#jest#options'] = '--watch'
       -- vim.g['test#python#pytest#options'] = '--verbose'
