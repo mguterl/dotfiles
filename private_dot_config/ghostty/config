@@ -1,4 +1,4 @@
 font-family = BerkeleyMono Nerd Font
-font-size = 15
-theme = Catppuccin Mocha
+font-size = 14
+theme = Catppuccin Frappe
 keybind = shift+enter=text:\x1b\r
