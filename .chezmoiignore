@@ -5,8 +5,3 @@ README.md
 .aws
 .ssh
 {{- end }}
-
-{{- if .work_linux }}
-.config/karabiner
-Library
-{{- end }}

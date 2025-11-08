@@ -75,32 +75,3 @@ install_brew_cask zoom
 {{- end }} # personal
 
 {{- end }} # darwin
-
-{{- if eq .chezmoi.os "linux" }}
-sudo apt-get update
-
-# install ripgrep
-if ! command -v rg &> /dev/null; then
-  sudo apt-get install -y ripgrep
-fi
-
-# install fzf
-if [ ! -d ~/.fzf ]; then
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --completion --no-bash --no-update-rc --key-bindings
-fi
-
-# install ohmyzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-# install zsh-autosuggestions
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
-
-# install starship
-if ! command -v starship &> /dev/null; then
-    curl -sS https://starship.rs/install.sh | sh -s -- -y
-fi
-
-{{- end }} # linux

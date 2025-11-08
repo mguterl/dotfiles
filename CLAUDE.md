@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a dotfiles repository managed by [chezmoi](https://www.chezmoi.io/), a cross-platform dotfile manager. The repository contains configuration files, scripts, and templates for macOS and Linux systems, with environment-specific settings for personal and work machines.
+This is a dotfiles repository managed by [chezmoi](https://www.chezmoi.io/), a cross-platform dotfile manager. The repository contains configuration files, scripts, and templates for macOS systems, with environment-specific settings for personal and work machines.
 
 ## Essential Commands
 
@@ -42,7 +42,6 @@ The system detects and configures for:
 - **personal**: Personal machines
 - **work**: Work machines (Shopify)
 - **work_mac**: macOS work machines
-- **work_linux**: Linux work machines (development containers)
 
 ### Managed Applications
 - **Terminal**: Ghostty, iTerm2
