@@ -654,7 +654,6 @@ require('lazy').setup({
       vim.g['test#strategy'] = "tslime"
 
       -- Configuration for Shopify dev integration
-      vim.g.test_ruby_dev_parallel_threshold = 500
       vim.g.test_ruby_dev_enabled = true
 
       -- Helper function to check if Shopify dev.yml exists
@@ -684,37 +683,7 @@ require('lazy').setup({
         end
 
         -- Replace ./bin/rails test with dev test
-        cmd = string.gsub(cmd, "%./bin/rails test", "dev test")
-
-        -- Determine if we should add parallel flag
-        local should_add_parallel = false
-        local threshold = vim.g.test_ruby_dev_parallel_threshold or 500
-
-        -- Check if this is a nearest test (single test) - don't parallelize
-        if string.match(cmd, "dev test.*:%d+") then
-          -- This is a nearest test (has line number), don't add -p
-          should_add_parallel = false
-        else
-          -- This is either a file test or suite test
-          -- For file tests, check line count
-          local current_file = vim.fn.expand('%:p')
-          if vim.fn.filereadable(current_file) == 1 then
-            local line_count = vim.fn.line('$')
-            if line_count >= threshold then
-              should_add_parallel = true
-            end
-          else
-            -- Suite test (no specific file), always use parallel
-            should_add_parallel = true
-          end
-        end
-
-        -- Add -p flag right after "dev test" if needed
-        if should_add_parallel then
-          cmd = string.gsub(cmd, "dev test", "dev test -p")
-        end
-
-        return cmd
+        return string.gsub(cmd, "%./bin/rails test", "dev test")
       end
 
       -- Register custom transformation with vim-test
