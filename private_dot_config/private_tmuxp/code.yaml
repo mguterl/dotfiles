@@ -1,0 +1,11 @@
+session_name: code
+suppress_history: true
+windows:
+  - window_name: main
+    layout: cbd3,300x79,0,0{200x79,0,0,0,99x79,201,0[99x39,201,0,1,99x39,201,40,2]}
+    panes:
+      - shell_command:
+          - nvim .
+      - shell_command: []
+      - shell_command:
+          - claude --dangerously-skip-permissions
