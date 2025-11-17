@@ -48,6 +48,19 @@ function branchify {
 
 # Added by tec agent
 [[ -x /Users/mguterl/.local/state/tec/profiles/base/current/global/init ]] && eval "$(/Users/mguterl/.local/state/tec/profiles/base/current/global/init zsh)"
+
+# Dev tree + tmuxp integration
+dt() {
+  local worktree=$1
+
+  # If already in tmux, detach first
+  if [ -n "$TMUX" ]; then
+    tmux detach-client
+  fi
+
+  # Load worktree-specific tmuxp session
+  tmuxp load "$worktree"
+}
 {{- end }}
 
 # ============================================================================
