@@ -1,4 +1,6 @@
 font-family = BerkeleyMono Nerd Font Mono
 font-size = 14
-theme = Catppuccin Frappe
+theme = Catppuccin Mocha
 keybind = shift+enter=text:\x1b\r
+macos-icon = custom
+macos-custom-icon = ~/.config/ghostty/icons/ghostty-catppuccin-mocha.icns
