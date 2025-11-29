@@ -77,4 +77,17 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 # ============================================================================
 # Prompt (must be last)
 # ============================================================================
-eval "$(starship init zsh)"
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+autoload -U promptinit; promptinit
+
+# Pure prompt - Catppuccin Mocha (true color)
+zstyle :prompt:pure:path color '#89b4fa'
+zstyle :prompt:pure:git:branch color '#a6adc8'
+zstyle :prompt:pure:git:dirty color '#f5c2e7'
+zstyle :prompt:pure:git:arrow color '#94e2d5'
+zstyle :prompt:pure:prompt:success color '#cba6f7'
+zstyle :prompt:pure:prompt:error color '#f38ba8'
+zstyle :prompt:pure:execution_time color '#f9e2af'
+zstyle :prompt:pure:virtualenv color '#a6e3a1'
+
+prompt pure
